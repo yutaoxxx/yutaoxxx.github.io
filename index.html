@@ -262,6 +262,152 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/15/逻辑回归/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="TaoYu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tommy's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/15/逻辑回归/" itemprop="url">逻辑回归</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-15T23:36:34+08:00">
+                2018-10-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ML/" itemprop="url" rel="index">
+                    <span itemprop="name">ML</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="sigmod函数"><a href="#sigmod函数" class="headerlink" title="sigmod函数"></a>sigmod函数</h1><p>首先给大家介绍一下sigmod函数<br>$$<br>y=\frac{1}{e^{-x}+1}<br>$$<br>这个函数的特性是能过将$(-\infty,\infty)​$上的数映射到$(0,1)​$之间，也就是一个<strong>概率</strong>.</p>
+<h1 id="逻辑回归的表达形式"><a href="#逻辑回归的表达形式" class="headerlink" title="逻辑回归的表达形式"></a>逻辑回归的表达形式</h1><p>逻辑回归的基本形式还是基于sigmod函数</p>
+<p>假设输入向量$X=(x_1,x_2,\cdots,x_n)$，这里的$X$可以理解为<strong>特征向量</strong>，其标签$Y$为，且$Y\in{0,1}$,其中$1$为正例,$0$为反例.模型为<br>$$<br>p(y=1|x;\theta)=\frac{1}{e^{-\theta_1x_1+\theta_2x_2+\cdots+\theta_nx_n}+1}=\frac{1}{e^{\bf{-\theta^T}X}+1}=h_\theta(x)<br>$$<br>其中$(\theta_1,\theta_2,\cdots,\theta_n)​$为模型的参数.</p>
+<h1 id="参数估计"><a href="#参数估计" class="headerlink" title="参数估计"></a>参数估计</h1><p>现在我们有了这个概率模型可以输出概率，现在只需要对模型的参数进行估计即可。参数估计的方法是<strong>最大似然估计</strong>。对于单个的样本，其后验概率为<br>$$<br>p(y|x;\theta)=(h_\theta(x))^y(1-h_\theta(x))^{(1-y)}<br>$$<br>那么，极大似然函数为<br>$$<br>\begin{aligned}<br>L(\theta|x,y)&amp;=\prod_{i=1}^mp(y^{(i)}|x^{(i)};\theta) \<br>&amp;=\prod_{i=1}^m(h_\theta(x^{(i)}))^{y^{(i)}}(1-h_\theta(x^{(i)}))^{1-y^{(i)}}<br>\end{aligned}<br>$$<br>取对数<br>$$<br>l(\theta)=\sum_{i=1}^my^{(i)}log(h_\theta(x^{(i)}))+(1-y^{(i)})log(1-h_\theta(x^{(i)}))<br>$$<br>接下来只需求使$l(\theta)$最小化的$\theta$即可<br>$$<br>\mathop{\arg\min}_{\theta}(l(\theta))<br>$$</p>
+<h1 id="梯度下降"><a href="#梯度下降" class="headerlink" title="梯度下降"></a>梯度下降</h1><p>使用梯度下降法来求解$\theta$<br>$$<br>\begin{aligned}<br>\frac{\partial}{\partial \theta_j}l(\theta)&amp;=\frac{\partial}{\partial\theta_j}\sum_{i=1}^my^{(i)}log(h_\theta(x^{(i)}))+(1-y^{(i)})log(1-h_\theta(x^{(i)}))\<br>&amp;=(\frac{y^{(i)}}{h(x^{(i)})}-(1-y^{(i)}\frac{1}{h(x^{i})}))\frac{\partial}{\partial\theta_j}(h(x^{(i)}))\<br>&amp;=(y^{(i)}-h(x^{(i)}))x_j<br>\end{aligned}<br>$$</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/28/机器学习积累/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -839,7 +985,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -850,7 +996,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -861,7 +1007,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
